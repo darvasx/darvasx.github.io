@@ -145,3 +145,746 @@
   </div>
 </body>
 </html>
+-->
+
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reino Natural - Lider en Medicina Natural</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        natural: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-natural-50 font-sans text-gray-800 h-full flex flex-col justify-between selection:bg-natural-500 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="bg-natural-800 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('catalog')">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center p-1 shadow">
+                    <img src="https://placehold.co/100x100/166534/ffffff?text=RN" alt="Logo" class="rounded-full w-full h-full object-cover">
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-wide leading-tight">Reino Natural</h1>
+                    <p class="text-xs text-natural-100 uppercase tracking-widest">Líder en Medicina Natural</p>
+                </div>
+            </div>
+
+            <!-- Botones de navegación superior -->
+            <div class="flex items-center space-x-2">
+                <button onclick="switchTab('links')" id="btn-links" class="px-3 py-1.5 rounded-lg text-sm font-medium transition bg-natural-700 hover:bg-natural-600 flex items-center space-x-1">
+                    <i class="fa-solid fa-link"></i>
+                    <span class="hidden sm:inline">Sucursales</span>
+                </button>
+                <button onclick="switchTab('catalog')" id="btn-catalog" class="px-3 py-1.5 rounded-lg text-sm font-medium transition bg-natural-900 shadow-inner flex items-center space-x-1">
+                    <i class="fa-solid fa-store"></i>
+                    <span class="hidden sm:inline">Catálogo</span>
+                </button>
+                <button onclick="openCartModal()" class="relative px-3 py-1.5 rounded-lg text-sm font-medium transition bg-natural-700 hover:bg-natural-600 flex items-center space-x-1">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-amber-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+                </button>
+                <button onclick="switchTab('admin')" id="btn-admin" class="px-3 py-1.5 rounded-lg text-sm font-medium transition bg-natural-700 hover:bg-natural-600 flex items-center space-x-1 text-natural-100">
+                    <i class="fa-solid fa-gear"></i>
+                    <span class="hidden sm:inline">Admin</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-4xl w-full mx-auto p-4 flex-grow">
+
+        <!-- VISTA 1: ENLACES / SUCURSALES (Estilo Linktree mejorado) -->
+        <section id="view-links" class="hidden space-y-4 max-w-md mx-auto py-4">
+            <div class="text-center space-y-2 mb-6">
+                <div class="w-24 h-24 mx-auto bg-white rounded-full p-1 shadow-md border-2 border-natural-600">
+                    <img src="https://placehold.co/200x200/166534/ffffff?text=Reino+Natural" alt="Reino Natural" class="rounded-full w-full h-full object-cover">
+                </div>
+                <h2 class="text-2xl font-bold text-natural-900">Reino Natural</h2>
+                <p class="text-sm text-natural-700 font-medium bg-natural-100 py-1 px-3 rounded-full inline-block">LÍDER EN MEDICINA NATURAL</p>
+            </div>
+
+            <div class="space-y-3">
+                <a href="https://wa.me/50400000000?text=Hola,%20quisiera%20consultar%20sobre%20productos%20en%20Plaza%20Miraflores" target="_blank" class="w-full bg-white hover:bg-natural-50 text-gray-800 border-2 border-natural-500 font-semibold py-3 px-4 rounded-xl shadow-sm transition flex items-center justify-between group">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-natural-100 text-natural-700 flex items-center justify-center group-hover:bg-natural-500 group-hover:text-white transition">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                        </div>
+                        <span class="text-base">Plaza Miraflores</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-400 group-hover:translate-x-1 transition"></i>
+                </a>
+
+                <a href="https://wa.me/50400000000?text=Hola,%20quisiera%20consultar%20sobre%20productos%20en%20Walmart%20Cascadas%20Mall" target="_blank" class="w-full bg-white hover:bg-natural-50 text-gray-800 border-2 border-natural-500 font-semibold py-3 px-4 rounded-xl shadow-sm transition flex items-center justify-between group">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-natural-100 text-natural-700 flex items-center justify-center group-hover:bg-natural-500 group-hover:text-white transition">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                        </div>
+                        <span class="text-base">Walmart Cascadas Mall</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-400 group-hover:translate-x-1 transition"></i>
+                </a>
+
+                <a href="https://wa.me/50400000000?text=Hola,%20quisiera%20consultar%20sobre%20productos%20en%20Paiz%20Multiplaza" target="_blank" class="w-full bg-white hover:bg-natural-50 text-gray-800 border-2 border-natural-500 font-semibold py-3 px-4 rounded-xl shadow-sm transition flex items-center justify-between group">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-natural-100 text-natural-700 flex items-center justify-center group-hover:bg-natural-500 group-hover:text-white transition">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                        </div>
+                        <span class="text-base">Paiz Multiplaza</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-400 group-hover:translate-x-1 transition"></i>
+                </a>
+
+                <button onclick="switchTab('catalog')" class="w-full bg-natural-700 hover:bg-natural-800 text-white font-semibold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-between group">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center">
+                            <i class="fa-solid fa-book-open text-lg"></i>
+                        </div>
+                        <span class="text-base">Catálogo Interactivo Reino Natural</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-natural-200 group-hover:translate-x-1 transition"></i>
+                </button>
+
+                <div class="grid grid-cols-3 gap-3 pt-2">
+                    <a href="https://instagram.com" target="_blank" class="bg-white hover:bg-pink-50 border-2 border-pink-400 text-pink-600 py-3 rounded-xl shadow-sm flex flex-col items-center justify-center transition">
+                        <i class="fa-brands fa-instagram text-2xl mb-1"></i>
+                        <span class="text-xs font-medium">Instagram</span>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" class="bg-white hover:bg-blue-50 border-2 border-blue-400 text-blue-600 py-3 rounded-xl shadow-sm flex flex-col items-center justify-center transition">
+                        <i class="fa-brands fa-facebook text-2xl mb-1"></i>
+                        <span class="text-xs font-medium">Facebook</span>
+                    </a>
+                    <a href="https://tiktok.com" target="_blank" class="bg-white hover:bg-gray-100 border-2 border-gray-400 text-gray-900 py-3 rounded-xl shadow-sm flex flex-col items-center justify-center transition">
+                        <i class="fa-brands fa-tiktok text-2xl mb-1"></i>
+                        <span class="text-xs font-medium">TikTok</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISTA 2: CATÁLOGO DE PRODUCTOS -->
+        <section id="view-catalog" class="space-y-6">
+            <!-- Banner promocional o buscador -->
+            <div class="bg-gradient-to-r from-natural-700 to-natural-900 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold">Botica Natural Avanzada</h2>
+                    <p class="text-natural-100 text-sm mt-1">Encuentra suplementos, vitaminas y remedios naturales para tu salud y bienestar.</p>
+                </div>
+                <button onclick="switchTab('admin')" class="bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow transition flex items-center space-x-2 whitespace-nowrap">
+                    <i class="fa-solid fa-plus-circle"></i>
+                    <span>Agregar Producto (Admin)</span>
+                </button>
+            </div>
+
+            <!-- Filtros y Buscador -->
+            <div class="flex flex-col sm:flex-row gap-3 items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-natural-100">
+                <div class="relative w-full sm:w-72">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                        <i class="fa-solid fa-search"></i>
+                    </span>
+                    <input type="text" id="search-input" oninput="filterProducts()" placeholder="Buscar producto..." class="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-natural-500">
+                </div>
+                <div id="category-filters" class="flex flex-wrap gap-1.5 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
+                    <button onclick="filterCategory('todos')" id="cat-btn-todos" class="category-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-natural-700 text-white transition">Todos</button>
+                    <!-- Dinámicas desde JS -->
+                </div>
+            </div>
+
+            <!-- Grid de Productos -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <!-- Se llena dinámicamente -->
+            </div>
+
+            <!-- Mensaje si no hay productos -->
+            <div id="no-products" class="hidden text-center py-12">
+                <i class="fa-solid fa-box-open text-4xl text-gray-300 mb-2"></i>
+                <p class="text-gray-500 font-medium">No se encontraron productos en esta categoría o búsqueda.</p>
+            </div>
+        </section>
+
+        <!-- VISTA 3: PANEL DE ADMINISTRACIÓN (Gestor de Productos) -->
+        <section id="view-admin" class="hidden space-y-6 max-w-2xl mx-auto">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-natural-100">
+                <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-natural-900" id="form-title">Agregar Nuevo Producto</h2>
+                        <p class="text-xs text-gray-500">Completa la información para actualizar el catálogo de la tienda.</p>
+                    </div>
+                    <button onclick="resetProductForm()" id="cancel-edit-btn" class="hidden text-xs bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded-lg text-gray-700 font-medium transition">Cancelar Edición</button>
+                </div>
+
+                <form id="product-form" onsubmit="saveProduct(event)" class="space-y-4">
+                    <input type="hidden" id="product-id">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Nombre del Producto</label>
+                            <input type="text" id="p-name" required placeholder="Ej. Moringa en Cápsulas" class="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-natural-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Categoría</label>
+                            <input type="text" id="p-category" required placeholder="Ej. Suplementos, Vitaminas" class="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-natural-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Precio (Lempiras / $)</label>
+                            <input type="number" step="0.01" id="p-price" required placeholder="Ej. 250.00" class="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-natural-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">URL de la Imagen</label>
+                            <input type="url" id="p-image" required placeholder="https://ejemplo.com/imagen.jpg" class="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-natural-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Descripción corta</label>
+                        <textarea id="p-desc" rows="3" required placeholder="Beneficios, ingredientes y modo de uso..." class="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-natural-500 focus:outline-none"></textarea>
+                    </div>
+
+                    <div class="flex justify-end space-x-3 pt-2">
+                        <button type="submit" class="bg-natural-700 hover:bg-natural-800 text-white font-semibold px-6 py-2.5 rounded-xl text-sm shadow transition flex items-center space-x-2">
+                            <i class="fa-solid fa-save"></i>
+                            <span id="save-btn-text">Guardar Producto</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Listado para gestionar existentes -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-natural-100">
+                <h3 class="text-lg font-bold text-natural-900 mb-4">Productos Registrados</h3>
+                <div id="admin-products-list" class="divide-y divide-gray-100 max-h-96 overflow-y-auto pr-1 space-y-3">
+                    <!-- Se llena con JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal del Carrito / Pedido WhatsApp -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+                <h3 class="text-lg font-bold text-natural-900 flex items-center space-x-2">
+                    <i class="fa-solid fa-cart-shopping text-natural-700"></i>
+                    <span>Tu Pedido Actual</span>
+                </h3>
+                <button onclick="closeCartModal()" class="text-gray-400 hover:text-gray-600 text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="cart-items-container" class="divide-y divide-gray-100 max-h-60 overflow-y-auto space-y-2">
+                <!-- Items del carrito -->
+            </div>
+
+            <div id="cart-empty-msg" class="text-center py-6 text-gray-500">
+                Tu carrito está vacío.
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 space-y-3">
+                <div class="flex justify-between font-bold text-base text-gray-800">
+                    <span>Total Estimado:</span>
+                    <span id="cart-total" class="text-natural-700">L 0.00</span>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Selecciona Sucursal para Enviar Pedido</label>
+                    <select id="whatsapp-branch" class="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-natural-500 focus:outline-none">
+                        <option value="50400000000">Plaza Miraflores</option>
+                        <option value="50400000000">Walmart Cascadas Mall</option>
+                        <option value="50400000000">Paiz Multiplaza</option>
+                    </select>
+                </div>
+
+                <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow transition flex items-center justify-center space-x-2">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span>Enviar Pedido por WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Detalle de Producto -->
+    <div id="product-detail-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4 relative">
+            <button onclick="closeDetailModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="detail-modal-content" class="space-y-4">
+                <!-- Contenido dinámico -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de Notificación Personalizado -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-natural-900 text-white px-4 py-3 rounded-xl shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center space-x-2">
+        <i class="fa-solid fa-circle-check text-natural-500 text-lg"></i>
+        <span id="toast-msg" class="text-sm font-medium">Acción realizada con éxito</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-natural-900 text-natural-100 py-6 text-center text-xs mt-12 border-t border-natural-800">
+        <div class="max-w-4xl mx-auto px-4 space-y-2">
+            <p class="font-semibold text-white">© Reino Natural - Líder en Medicina Natural</p>
+            <p class="text-natural-300">Solución digital avanzada para boticas y salud natural.</p>
+        </div>
+    </footer>
+
+    <!-- Script principal de la aplicación -->
+    <script>
+        // Base de datos inicial de productos (simulada y guardada en localStorage)
+        const defaultProducts = [
+            {
+                id: 1,
+                name: "Moringa Pura en Cápsulas",
+                category: "Suplementos",
+                price: 280.00,
+                image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=80",
+                description: "Poderoso antioxidante natural, rico en vitaminas A, C y E. Ideal para fortalecer el sistema inmunológico y aportar energía diaria."
+            },
+            {
+                id: 2,
+                name: "Jarabe de Propóleo y Miel",
+                category: "Remedios",
+                price: 180.00,
+                image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=500&auto=format&fit=crop&q=80",
+                description: "Alivio natural para la garganta irritada y la tos. Elaborado con miel de abeja pura y extracto concentrado de propóleo."
+            },
+            {
+                id: 3,
+                name: "Cápsulas de Cúrcuma y Jengibre",
+                category: "Suplementos",
+                price: 320.00,
+                image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=500&auto=format&fit=crop&q=80",
+                description: "Excelente antiinflamatorio natural que apoya la salud de las articulaciones, la digestión y la circulación sanguínea."
+            },
+            {
+                id: 4,
+                name: "Té de Valeriana y Tilo (Relajante)",
+                category: "Infusiones",
+                price: 95.00,
+                image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&auto=format&fit=crop&q=80",
+                description: "Fórmula herbal diseñada para calmar la ansiedad leve, inducir un sueño reparador y relajar el sistema nervioso."
+            },
+            {
+                id: 5,
+                name: "Aceite Esencial de Eucalipto",
+                category: "Aceites",
+                price: 210.00,
+                image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=500&auto=format&fit=crop&q=80",
+                description: "Descongestionante respiratorio natural mediante aromaterapia. Ayuda a despejar las vías respiratorias rápidamente."
+            },
+            {
+                id: 6,
+                name: "Colágeno Hidrolizado con Vitamina C",
+                category: "Vitaminas",
+                price: 450.00,
+                image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=500&auto=format&fit=crop&q=80",
+                description: "Promueve la salud de la piel, cabello, uñas y articulaciones. Fórmula reforzada con vitamina C para mayor absorción."
+            }
+        ];
+
+        let products = JSON.parse(localStorage.getItem('rn_products')) || defaultProducts;
+        let cart = JSON.parse(localStorage.getItem('rn_cart')) || [];
+        let currentCategory = 'todos';
+
+        // Inicialización al cargar la ventana
+        window.onload = function() {
+            renderCatalog();
+            renderCategories();
+            renderAdminList();
+            updateCartCount();
+        };
+
+        // Cambio de pestañas (Vistas)
+        function switchTab(tab) {
+            document.getElementById('view-links').classList.add('hidden');
+            document.getElementById('view-catalog').classList.add('hidden');
+            document.getElementById('view-admin').classList.add('hidden');
+
+            // Reset botones
+            document.getElementById('btn-links').className = "px-3 py-1.5 rounded-lg text-sm font-medium transition bg-natural-700 hover:bg-natural-600 flex items-center space-x-1";
+            document.getElementById('btn-catalog').className = "px-3 py-1.5 rounded-lg text-sm font-medium transition bg-natural-700 hover:bg-natural-600 flex items-center space-x-1";
+            document.getElementById('btn-admin').className = "px-3 py-1.5 rounded-lg text-sm font-medium transition bg-natural-700 hover:bg-natural-600 flex items-center space-x-1 text-natural-100";
+
+            if (tab === 'links') {
+                document.getElementById('view-links').classList.remove('hidden');
+                document.getElementById('btn-links').className = "px-3 py-1.5 rounded-lg text-sm font-medium transition bg-natural-900 shadow-inner flex items-center space-x-1";
+            } else if (tab === 'catalog') {
+                document.getElementById('view-catalog').classList.remove('hidden');
+                document.getElementById('btn-catalog').className = "px-3 py-1.5 rounded-lg text-sm font-medium transition bg-natural-900 shadow-inner flex items-center space-x-1";
+            } else if (tab === 'admin') {
+                document.getElementById('view-admin').classList.remove('hidden');
+                document.getElementById('btn-admin').className = "px-3 py-1.5 rounded-lg text-sm font-medium transition bg-natural-900 shadow-inner flex items-center space-x-1 text-white";
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Renderizar categorías únicas para filtros
+        function renderCategories() {
+            const container = document.getElementById('category-filters');
+            const categories = ['todos', ...new Set(products.map(p => p.category))];
+            
+            let html = '';
+            categories.forEach(cat => {
+                const active = currentCategory === cat ? 'bg-natural-700 text-white shadow' : 'bg-gray-100 hover:bg-gray-200 text-gray-700';
+                html += `<button onclick="filterCategory('${cat}')" id="cat-btn-${cat}" class="category-pill px-3 py-1.5 rounded-lg text-xs font-semibold transition capitalize ${active}">${cat}</button>`;
+            });
+            container.innerHTML = html;
+        }
+
+        // Filtrar por categoría
+        function filterCategory(cat) {
+            currentCategory = cat;
+            renderCategories();
+            renderCatalog();
+        }
+
+        // Filtrar catálogo por buscador y categoría
+        function renderCatalog() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const grid = document.getElementById('products-grid');
+            const noProductsMsg = document.getElementById('no-products');
+
+            const filtered = products.filter(p => {
+                const matchesCat = currentCategory === 'todos' || p.category.toLowerCase() === currentCategory.toLowerCase();
+                const matchesSearch = p.name.toLowerCase().includes(searchTerm) || p.description.toLowerCase().includes(searchTerm);
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noProductsMsg.classList.remove('hidden');
+                return;
+            }
+
+            noProductsMsg.classList.add('hidden');
+            let html = '';
+            filtered.forEach(p => {
+                html += `
+                    <div class="bg-white rounded-2xl shadow-sm hover:shadow-md border border-natural-100 transition flex flex-col overflow-hidden group">
+                        <div class="relative h-48 overflow-hidden bg-gray-100 cursor-pointer" onclick="openDetailModal(${p.id})">
+                            <img src="${p.image}" alt="${p.name}" onerror="this.src='https://placehold.co/400x300/e2e8f0/475569?text=Reino+Natural'" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <span class="absolute top-3 left-3 bg-natural-900/80 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">${p.category}</span>
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow justify-between space-y-3">
+                            <div>
+                                <h3 onclick="openDetailModal(${p.id})" class="font-bold text-gray-800 text-base cursor-pointer hover:text-natural-700 transition line-clamp-1">${p.name}</h3>
+                                <p class="text-xs text-gray-500 mt-1 line-clamp-2">${p.description}</p>
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+                                <span class="font-bold text-natural-700 text-base">L ${Number(p.price).toFixed(2)}</span>
+                                <button onclick="addToCart(${p.id})" class="bg-natural-700 hover:bg-natural-800 text-white text-xs font-semibold px-3 py-2 rounded-xl transition flex items-center space-x-1.5 shadow-sm">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    <span>Agregar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function filterProducts() {
+            renderCatalog();
+        }
+
+        // Gestión del Carrito
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            saveCart();
+            updateCartCount();
+            showToast(`¡Agregado al carrito: ${product.name}!`);
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-badge').innerText = totalItems;
+            localStorage.setItem('rn_cart', JSON.stringify(cart));
+        }
+
+        function saveCart() {
+            localStorage.setItem('rn_cart', JSON.stringify(cart));
+        }
+
+        function openCartModal() {
+            const container = document.getElementById('cart-items-container');
+            const emptyMsg = document.getElementById('cart-empty-msg');
+            const totalEl = document.getElementById('cart-total');
+
+            if (cart.length === 0) {
+                container.innerHTML = '';
+                emptyMsg.classList.remove('hidden');
+                totalEl.innerText = 'L 0.00';
+            } else {
+                emptyMsg.classList.add('hidden');
+                let html = '';
+                let total = 0;
+
+                cart.forEach((item, index) => {
+                    const subtotal = item.price * item.quantity;
+                    total += subtotal;
+                    html += `
+                        py-3 flex items-center justify-between gap-3">
+                            <div class="flex items-center space-x-3">
+                                <img src="${item.image}" class="w-12 h-12 rounded-lg object-cover bg-gray-100" onerror="this.src='https://placehold.co/100x100/e2e8f0/475569?text=RN'">
+                                <div>
+                                    <h4 class="text-sm font-bold text-gray-800 line-clamp-1">${item.name}</h4>
+                                    <p class="text-xs text-gray-500">L ${Number(item.price).toFixed(2)} c/u</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden">
+                                    <button onclick="changeQty(${index}, -1)" class="px-2 py-1 bg-gray-50 hover:bg-gray-100 text-gray-600 text-xs font-bold">-</button>
+                                    <span class="px-2.5 py-1 text-xs font-semibold text-gray-800">${item.quantity}</span>
+                                    <button onclick="changeQty(${index}, 1)" class="px-2 py-1 bg-gray-50 hover:bg-gray-100 text-gray-600 text-xs font-bold">+</button>
+                                </div>
+                                <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-600 p-1 text-sm">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+                totalEl.innerText = `L ${total.toFixed(2)}`;
+            }
+
+            document.getElementById('cart-modal').classList.remove('hidden');
+        }
+
+        function closeCartModal() {
+            document.getElementById('cart-modal').classList.add('hidden');
+        }
+
+        function changeQty(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            saveCart();
+            updateCartCount();
+            openCartModal();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+            updateCartCount();
+            openCartModal();
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                showToast("Tu carrito está vacío.");
+                return;
+            }
+
+            const branchSelect = document.getElementById('whatsapp-branch');
+            const phone = branchSelect.value;
+            const branchName = branchSelect.options[branchSelect.selectedIndex].text;
+
+            let message = `*¡Hola, Reino Natural! (${branchName})*%0A%0AQuisiera hacer el siguiente pedido:%0A%0A`;
+            let total = 0;
+
+            cart.forEach(item => {
+                const sub = item.price * item.quantity;
+                total += sub;
+                message += `- ${item.quantity}x ${item.name} (L ${sub.toFixed(2)})%0A`;
+            });
+
+            message += `%0A*Total a Pagar: L ${total.toFixed(2)}*%0A%0A¿Me confirman disponibilidad y forma de entrega por favor?`;
+
+            const url = `https://wa.me/${phone}?text=${message}`;
+            window.open(url, '_blank');
+        }
+
+        // Modal de detalle de producto
+        function openDetailModal(id) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+
+            const content = document.getElementById('detail-modal-content');
+            content.innerHTML = `
+                <div class="rounded-xl overflow-hidden h-56 bg-gray-100">
+                    <img src="${p.image}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300/e2e8f0/475569?text=Reino+Natural'">
+                </div>
+                <div class="space-y-2">
+                    <span class="bg-natural-100 text-natural-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">${p.category}</span>
+                    <h3 class="text-xl font-bold text-gray-900">${p.name}</h3>
+                    <p class="text-xl font-bold text-natural-700">L ${Number(p.price).toFixed(2)}</p>
+                    <p class="text-sm text-gray-600 leading-relaxed">${p.description}</p>
+                </div>
+                <button onclick="addToCart(${p.id}); closeDetailModal();" class="w-full bg-natural-700 hover:bg-natural-800 text-white font-bold py-3 rounded-xl shadow transition flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    <span>Agregar al Carrito</span>
+                </button>
+            `;
+            document.getElementById('product-detail-modal').classList.remove('hidden');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('product-detail-modal').classList.add('hidden');
+        }
+
+        // --- Panel de Administración ---
+        function renderAdminList() {
+            const list = document.getElementById('admin-products-list');
+            if (products.length === 0) {
+                list.innerHTML = `<p class="text-gray-400 text-sm text-center py-4">No hay productos registrados.</p>`;
+                return;
+            }
+
+            let html = '';
+            products.forEach(p => {
+                html += `
+                    <div class="flex items-center justify-between py-2.5">
+                        <div class="flex items-center space-x-3">
+                            <img src="${p.image}" class="w-10 h-10 rounded-lg object-cover bg-gray-100" onerror="this.src='https://placehold.co/100x100/e2e8f0/475569?text=RN'">
+                            <div>
+                                <h4 class="text-sm font-bold text-gray-800 line-clamp-1">${p.name}</h4>
+                                <p class="text-xs text-natural-700 font-semibold">L ${Number(p.price).toFixed(2)} • <span class="text-gray-500 font-normal">${p.category}</span></p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <button onclick="editProduct(${p.id})" class="p-2 text-blue-500 hover:bg-blue-50 rounded-lg transition" title="Editar">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <button onclick="deleteProduct(${p.id})" class="p-2 text-red-500 hover:bg-red-50 rounded-lg transition" title="Eliminar">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            list.innerHTML = html;
+        }
+
+        function saveProduct(event) {
+            event.preventDefault();
+            const id = document.getElementById('product-id').value;
+            const name = document.getElementById('p-name').value;
+            const category = document.getElementById('p-category').value;
+            const price = parseFloat(document.getElementById('p-price').value);
+            const image = document.getElementById('p-image').value;
+            const description = document.getElementById('p-desc').value;
+
+            if (id) {
+                // Editar existente
+                const index = products.findIndex(p => p.id == id);
+                if (index !== -1) {
+                    products[index] = { id: Number(id), name, category, price, image, description };
+                    showToast("¡Producto actualizado correctamente!");
+                }
+            } else {
+                // Crear nuevo
+                const newProduct = {
+                    id: Date.now(),
+                    name,
+                    category,
+                    price,
+                    image,
+                    description
+                };
+                products.unshift(newProduct);
+                showToast("¡Nuevo producto agregado con éxito!");
+            }
+
+            localStorage.setItem('rn_products', JSON.stringify(products));
+            resetProductForm();
+            renderCatalog();
+            renderCategories();
+            renderAdminList();
+        }
+
+        function editProduct(id) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+
+            document.getElementById('product-id').value = p.id;
+            document.getElementById('p-name').value = p.name;
+            document.getElementById('p-category').value = p.category;
+            document.getElementById('p-price').value = p.price;
+            document.getElementById('p-image').value = p.image;
+            document.getElementById('p-desc').value = p.description;
+
+            document.getElementById('form-title').innerText = "Editar Producto";
+            document.getElementById('save-btn-text').innerText = "Actualizar Producto";
+            document.getElementById('cancel-edit-btn').classList.remove('hidden');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetProductForm() {
+            document.getElementById('product-form').reset();
+            document.getElementById('product-id').value = "";
+            document.getElementById('form-title').innerText = "Agregar Nuevo Producto";
+            document.getElementById('save-btn-text').innerText = "Guardar Producto";
+            document.getElementById('cancel-edit-btn').classList.add('hidden');
+        }
+
+        function deleteProduct(id) {
+            if (confirm("¿Estás seguro de eliminar este producto?")) {
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('rn_products', JSON.stringify(products));
+                renderCatalog();
+                renderCategories();
+                renderAdminList();
+                showToast("Producto eliminado.");
+            }
+        }
+
+        // Sistema de notificaciones Toast
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
+
+
